@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;git 
 
 class PostsController extends Controller
 {
@@ -11,6 +12,14 @@ class PostsController extends Controller
         $posts = Post::paginate(1);
         return view ('posts.index',[
             'posts'=> $posts
+        ]);
+    }
+
+    public function create()
+    {
+        $users = User::all();
+        return view('posts.create',[
+            'users' => $users
         ]);
     }
 }
