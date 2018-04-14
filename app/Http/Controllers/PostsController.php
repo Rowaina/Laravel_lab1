@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Http\Requests\StorePostRequest;
 
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::paginate(1);
+        $posts = Post::paginate(3);
         return view ('posts.index',[
             'posts'=> $posts
         ]);
@@ -21,5 +22,12 @@ class PostsController extends Controller
         return view('posts.create',[
             'users' => $users
         ]);
+    }
+
+    public function store(StorePostRequest $request){
+        Post::create(
+          $request->all()
+      );
+      return redirect(route('posts.index'));
     }
 }

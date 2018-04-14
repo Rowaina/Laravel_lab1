@@ -3,7 +3,7 @@
 @section('content')
 <br>
 <center>
-    <a href='posts/create' class="btn btn-primary btn-lg">Add</a>
+    <a href='/posts/create' class="btn btn-primary btn-lg">Add</a>
 </center>
     <br><br>
     <table class='table table-striped'>

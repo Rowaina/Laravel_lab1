@@ -3,10 +3,21 @@
 @section('content')
 <br>
 <center>
-    <a href='posts' class="btn btn-primary btn-lg">Back</a>
+    <a href='/posts' class="btn btn-primary btn-lg">Back</a>
 </center>
     <br><br>
-    <div class="form mt-5">
+    <div class="row">
+    <div class="form mt-5 col-8 offset-2">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
             <form method="post" action="/posts">
             {{csrf_field()}}
                 <div class="form-group">
@@ -29,6 +40,7 @@
             </form>
                 </div>
             </div>
+        </div>
 
 
 @endsection
