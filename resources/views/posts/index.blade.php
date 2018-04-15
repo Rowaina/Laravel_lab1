@@ -12,16 +12,20 @@
 
             <th  > Title </th>
             <th  > Posted By </th>
+            <th  > Slug </th>
             <th > Created At </th>
             <th > Actions </th>
 
         </tr>
         </thead>
         <tbody>
-        <tr>
+            
+        
             @foreach ( $posts as $post )
+            <tr>
                 <td> {{ $post->title }} </td>
                 <td> {{ $post->user->name }} </td>
+                <td> {{ $post->slug }} </td>
                 <td> {{ $post->readable_date }} </td>
                 <td id="actions" > 
                     <a href='posts/{{ $post->id }}' class="btn btn-success">View</a>
@@ -34,7 +38,8 @@
         </tr>
 
         <!-- Modal -->
-                <div class="modal fade" id="exampleModal{{ $post->id }}'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ $post->id }}'" aria-hidden="true">
+                <div class="modal fade" id="exampleModal{{ $post->id }}'" tabindex="-1" role="dialog" 
+                    aria-labelledby="exampleModalLabel{{ $post->id }}'" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
