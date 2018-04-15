@@ -24,7 +24,7 @@
                 <td> {{ $post->user->name }} </td>
                 <td> {{ $post->readable_date }} </td>
                 <td id="actions" > 
-                    <a href='posts/{{ $post->id }}/show' class="btn btn-success">View</a>
+                    <a href='posts/{{ $post->id }}' class="btn btn-success">View</a>
                     <a href='posts/{{ $post->id }}/edit' class="btn btn-primary">edit</a>
                     <button class="btn btn-danger" targ='{{ $post->id }}'> delete</button>
                 </td>
