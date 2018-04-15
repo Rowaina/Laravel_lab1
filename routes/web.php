@@ -16,10 +16,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts','PostsController@index')->name('posts.index');
+Route::get('/posts','PostsController@index')->name('posts.index')->middleware('auth');
 Route::get('posts/create','PostsController@create');
 Route::post('posts','PostsController@store');
 Route::get('posts/{id}', 'PostsController@show');
 Route::get('posts/{id}/edit', 'PostsController@edit');
 Route::put('posts/{id}', 'PostsController@update');
 Route::delete('posts/{id}', 'PostsController@destory');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
