@@ -26,9 +26,36 @@
                 <td id="actions" > 
                     <a href='posts/{{ $post->id }}' class="btn btn-success">View</a>
                     <a href='posts/{{ $post->id }}/edit' class="btn btn-primary">edit</a>
-                    <button class="btn btn-danger" targ='{{ $post->id }}'> delete</button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $post->id }}'">
+                        Delete
+                    </button>
                 </td>
         </tr>
+
+        <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{ $post->id }}'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ $post->id }}'" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Do you want to Delete this post ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <form action="/posts/{{$post->id}}" method="POST">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
         @endforeach
         </tbody>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\EditPostRequest;
 use App\Post;
 use App\User;
 
@@ -38,5 +39,23 @@ class PostsController extends Controller
         return view('posts.show', [
             "post" => $post,
         ]);
+    }
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.edit', [
+            'post' => $post,
+        ]);
+    }
+
+    public function update(EditPostRequest $request)
+    {
+
+        Post::where('id', $request->id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+        return redirect(route('posts.index'));
     }
 }
