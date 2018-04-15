@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\EditPostRequest;
+use App\Http\Requests\StorePostRequest;
 use App\Post;
 use App\User;
 
@@ -56,6 +56,13 @@ class PostsController extends Controller
             'title' => $request->title,
             'description' => $request->description,
         ]);
+        return redirect(route('posts.index'));
+    }
+
+    public function destory($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
         return redirect(route('posts.index'));
     }
 }
