@@ -65,5 +65,10 @@
             </div>
         </div>
     </div>
+    <div class="row justify-content-center" >
+        <div class="col-6 offset-3">
+            <a href="/login/github" class="btn btn-primary">Github</a>
+        </div>
+    </div>
 </div>
 @endsection

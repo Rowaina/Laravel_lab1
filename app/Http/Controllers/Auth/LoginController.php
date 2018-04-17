@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Socialite;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -19,6 +20,19 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('github')->user();
+        dd($user);
+
+        // $user->token;
+    }
 
     /**
      * Where to redirect users after login.

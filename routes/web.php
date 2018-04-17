@@ -23,6 +23,8 @@ Route::get('posts/{id}', 'PostsController@show');
 Route::get('posts/{id}/edit', 'PostsController@edit');
 Route::put('posts/{id}', 'PostsController@update');
 Route::delete('posts/{id}', 'PostsController@destory');
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
