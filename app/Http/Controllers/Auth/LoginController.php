@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use Socialite;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -20,7 +22,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+  
     public function redirectToProvider()
     {
         return Socialite::driver('github')->redirect();
@@ -29,9 +31,15 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('github')->user();
-        dd($user);
+        $check = User::where('email', '=', $user->email)->first();
+        if(!$check){
+           $check= User::create(['name'=>$user->nickname,'email'=>$user->email,'password'=>123456]);
+        }
+        Auth::login($check, true);
+        return redirect(route('posts.index'));
 
-        // $user->token;
+
+        
     }
 
     /**
